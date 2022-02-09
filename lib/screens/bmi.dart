@@ -1,3 +1,5 @@
+// ignore_for_file: unrelated_type_equality_checks, unnecessary_null_comparison
+
 import 'package:flutter/material.dart';
 import 'package:yo_sugars/components/RoundedInputField.dart';
 import 'dart:math' as math;
@@ -21,6 +23,8 @@ class _BMIState extends State<BMI> {
       return Text(result.toString() + "\n" + "\n" + "Your weight is normal");
     } else if (result < 18.5) {
       return Text(result.toString() + "\n" + "\n" + "You are underweight");
+    } else {
+      return const Text("You are obese");
     }
   }
 
@@ -90,6 +94,7 @@ class _BMIState extends State<BMI> {
                   field: heightController,
                   keyboard: TextInputType.number,
                   fcolor: Colors.orange,
+                  onChanged: (value) {},
                 ),
                 const SizedBox(
                   height: 10,
@@ -100,25 +105,57 @@ class _BMIState extends State<BMI> {
                   field: weight,
                   keyboard: TextInputType.number,
                   fcolor: Colors.orange,
+                  onChanged: (value) {},
                 ),
                 const SizedBox(
                   height: 10,
                 ),
                 ElevatedButton(
-                    onPressed: () {
-                      if (heightController == ' ' || weight == ' ') {
-                        Flushbar(
+                    onPressed: () async {
+                      if (heightController == null || weight == null) {
+                        await Flushbar(
                           message: "Empty field\s found!",
                           icon: const Icon(Icons.info_outline,
                               size: 25.0, color: Colors.red),
                           duration: const Duration(seconds: 3),
                           leftBarIndicatorColor: Colors.red,
                         ).show(context);
-                      } else {
+                      } else if (heightController != null || weight != null) {
                         createAlert(context);
+                        print("yes");
                       }
+                      // else if (heightController != null || weight != null) {
+                      //   double result = (double.parse(weight.text) /
+                      //       math.pow(
+                      //           double.parse(heightController.text), 1 / 2));
+                      //   if (result > 25) {
+                      //     ScaffoldMessenger.of(context).showSnackBar(
+                      //         const SnackBar(
+                      //             duration: Duration(seconds: 5),
+                      //             behavior: SnackBarBehavior.floating,
+                      //             content: Text("To reduce weight: " +
+                      //                 "\n" +
+                      //                 " Please do alot of exercises")));
+                      //   } else if (result < 18.5) {
+                      //     ScaffoldMessenger.of(context).showSnackBar(
+                      //         const SnackBar(
+                      //             duration: Duration(seconds: 5),
+                      //             behavior: SnackBarBehavior.floating,
+                      //             content: Text("To gain weight: " +
+                      //                 "\n" +
+                      //                 " Please eat lots of carbohydrates")));
+                      //   } else if (result > 18.5 && result < 25) {
+                      //     ScaffoldMessenger.of(context).showSnackBar(
+                      //         const SnackBar(
+                      //             duration: Duration(seconds: 5),
+                      //             behavior: SnackBarBehavior.floating,
+                      //             content: Text("To maintain weight: " +
+                      //                 "\n" +
+                      //                 " Please drink lots of water")));
+                      //   }
+                      // }
                     },
-                    child: const Text("Submit"))
+                    child: const Text("Submit")),
               ],
             ),
           ),

@@ -28,6 +28,7 @@ class RoundedInputField extends StatelessWidget {
     return TextFieldContainer(
       fcolor: fcolor,
       child: TextFormField(
+        // validator: (value) => value!.isNotEmpty ? null : "this is required",
         onChanged: onChanged,
         onTap: tap,
         readOnly: x,

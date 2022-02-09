@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:yo_sugars/components/TabLabel.dart';
 
-class FoodCheck extends StatefulWidget {
-  const FoodCheck({Key? key}) : super(key: key);
+class FoodCheck02 extends StatefulWidget {
+  const FoodCheck02({Key? key}) : super(key: key);
 
   @override
-  _FoodCheckState createState() => _FoodCheckState();
+  _FoodCheck02State createState() => _FoodCheck02State();
 }
 
-class _FoodCheckState extends State<FoodCheck> {
+class _FoodCheck02State extends State<FoodCheck02> {
   String selectedItem01 = "Bread";
   List<String> breakfastItems = ["Bread", "Milk", "Casava", "eggs"];
   String selectedItem02 = "Posho";
@@ -207,7 +207,7 @@ class _FoodCheckState extends State<FoodCheck> {
               colorFilter: ColorFilter.mode(
                   Colors.black.withOpacity(0.7), BlendMode.darken),
               fit: BoxFit.cover,
-              image: AssetImage("assets/food2.jpg"),
+              image: const AssetImage("assets/food4.jpg"),
             ),
           ),
           child: Column(
